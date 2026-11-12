@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  >
+
+  <meta name="theme-color" content="#10272b">
+
+  <meta
+    name="description"
+    content="Νόστος: un lugar al que volver. Agenda, voz, foco y calma a tu ritmo."
+  >
+
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta
+    name="apple-mobile-web-app-status-bar-style"
+    content="black-translucent"
+  >
+
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./icon-192.png">
+
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./odyssey.css">
+  <link rel="stylesheet" href="./accessibility.css">
+
+  <title>Νόστος · Tu lugar al que volver</title>
+</head>
+
+<body>
+  <a class="skip" href="#main">
+    Saltar al contenido
+  </a>
+
+  <div id="boot" aria-hidden="true" hidden>
+    <div class="boot-emblem">
+      <img
+        src="./athena-owl.webp"
+        alt=""
+        width="108"
+        height="100"
+      >
+    </div>
+
+    <div class="boot-name" lang="el">
+      Νόστος
+    </div>
+
+    <p>Tu lugar al que volver.</p>
+
+    <button id="skipBoot" class="quiet">
+      Entrar
+    </button>
+  </div>
+
+  <aside
+    id="sidebar"
+    class="sidebar"
+    aria-label="Menú principal"
+  ></aside>
+
+  <div class="shell">
+    <header class="topbar">
+      <button
+        class="mobile-brand"
+        data-nav="home"
+        aria-label="Nóstos, inicio"
+      >
+        Νόστος
+        <span>NÓSTOS</span>
+      </button>
+
+      <div class="breadcrumb" id="breadcrumb">
+        Tu espacio personal
+      </div>
+
+      <div class="top-actions">
+        <span class="local-status" id="networkStatus">
+          <i></i>
+          En este dispositivo
+        </span>
+
+        <button
+          class="icon-button"
+          data-action="voice"
+          aria-label="Comandos de voz"
+          title="Comandos de voz (Alt + V)"
+        >
+          <span id="voiceIcon"></span>
+        </button>
+
+        <button
+          class="icon-button"
+          data-action="open-tool"
+          data-id="alarm"
+          aria-label="Alarmas y recordatorios"
+          title="Alarmas y recordatorios"
+        >
+          <svg
+            class="icon"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path
+              d="M5 17h14l-2-4V8A5 5 0 0 0 7 8v5ZM10 21h4M3 6l2-3M19 3l2 3"
+            />
+          </svg>
+        </button>
+
+        <button class="calm-button" data-nav="calm">
+          <span aria-hidden="true">◌</span>
+          Calma
+        </button>
+      </div>
+    </header>
+
+    <main id="main" tabindex="-1"></main>
+
+    <footer class="footer">
+      <span lang="el">νόστος</span>
+      · volver, a tu ritmo.
+
+      <span>
+        Datos locales · Sin rachas ni penalizaciones
+      </span>
+    </footer>
+  </div>
+
+  <nav
+    id="mobileNav"
+    class="mobile-nav"
+    aria-label="Navegación principal"
+  ></nav>
+
+  <div
+    id="miniTimer"
+    class="mini-timer"
+    hidden
+  ></div>
+
+  <div
+    id="athenaCompanion"
+    class="athena-companion decorative"
+  >
+    <section
+      id="athenaPanel"
+      class="athena-panel"
+      aria-labelledby="athenaTitle"
+      hidden
+    >
+      <div class="athena-panel-head">
+        <div>
+          <span class="eyebrow" lang="el">
+            ἈΘΗΝᾶ
+          </span>
+
+          <h2 id="athenaTitle">
+            A tu lado.
+          </h2>
+        </div>
+
+        <button
+          id="athenaClose"
+          class="icon-button"
+          aria-label="Cerrar la lechuza"
+        >
+          <svg
+            class="icon"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path d="m6 6 12 12M18 6 6 18"/>
+          </svg>
+        </button>
+      </div>
+
+      <p>
+        Un paso cada vez. ¿Por dónde seguimos?
+      </p>
+
+      <button
+        data-nav="assistant"
+        class="athena-choice"
+      >
+        <span>Organizar con Atenea</span>
+
+        <svg
+          class="icon"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path d="M7 17 17 7M7 7h10v10"/>
+        </svg>
+      </button>
+
+      <button
+        data-action="voice"
+        class="athena-choice"
+      >
+        <span>Dictar o escribir una petición</span>
+      </button>
+
+      <button
+        data-action="tutorial"
+        data-id="general"
+        class="athena-choice"
+      >
+        <span>Ver cómo funciona Nóstos</span>
+      </button>
+
+      <button
+        data-action="open-tool"
+        data-id="micropaso"
+        class="athena-choice"
+      >
+        <span>Dame un primer paso</span>
+
+        <svg
+          class="icon"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path d="M4 12h16m-6-6 6 6-6 6"/>
+        </svg>
+      </button>
+
+      <button
+        data-nav="calm"
+        class="athena-choice"
+      >
+        <span>Ir a mi refugio</span>
+
+        <svg
+          class="icon"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path d="M5 20Q1 7 20 3 22 20 7 18M5 20 15 10"/>
+        </svg>
+      </button>
+
+      <div class="athena-footnote">
+        Puedes moverme con el dedo.
+        Asistente local, sin API.
+      </div>
+    </section>
+
+    <button
+      id="athenaToggle"
+      class="athena-toggle"
+      aria-label="Abrir la lechuza de Atenea"
+      aria-expanded="false"
+      aria-controls="athenaPanel"
+      title="Tu lechuza de Atenea"
+    >
+      <span
+        class="athena-halo"
+        aria-hidden="true"
+      ></span>
+
+      <img
+        src="./athena-owl.webp"
+        alt=""
+        width="88"
+        height="82"
+      >
+
+      <span
+        class="athena-label"
+        aria-hidden="true"
+      >
+        Atenea
+      </span>
+    </button>
+  </div>
+
+  <div
+    id="toast"
+    class="toast"
+    role="status"
+    aria-live="polite"
+    hidden
+  ></div>
+
+  <dialog
+    id="modal"
+    aria-labelledby="dialogTitle"
+  >
+    <div id="dialogContent"></div>
+  </dialog>
+
+  <div id="refuge" hidden>
+    <p>Puedes hacer una pausa.</p>
+
+    <button
+      data-action="close-refuge"
+      class="secondary"
+    >
+      Volver
+    </button>
+  </div>
+
+  <noscript>
+    Activa JavaScript para usar la agenda y guardar tus datos.
+  </noscript>
+
+  <script>
+    if (
+      ["127.0.0.1", "localhost"].includes(location.hostname) &&
+      "serviceWorker" in navigator
+    ) {
+      navigator.serviceWorker
+        .getRegistrations()
+        .then(function (registrations) {
+          registrations.forEach(function (registration) {
+            registration.unregister();
+          });
+        });
+    }
+  </script>
+
+  <script src="./core.js"></script>
+  <script src="./assistant-engine.js"></script>
+  <script src="./help-content.js"></script>
+  <script src="./recording-core.js"></script>
+  <script src="./recordings.js"></script>
+  <script src="./app.js"></script>
+  <script src="./odyssey.js"></script>
+</body>
+</html>
